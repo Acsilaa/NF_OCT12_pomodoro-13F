@@ -19,28 +19,35 @@ export function TimerCube({
 }: TimerCubeProps) {
   const orientation = getOrientation(cycleIndex, focusSessionsBeforeLongBreak)
   const activeFace = getFaceForCycleIndex(cycleIndex, focusSessionsBeforeLongBreak)
-  const viewTiltX = -16
-  const viewTiltY = 28
+  const viewTiltX = 50
+  const viewTiltY = 0
+  const viewTiltZ = 45
 
   return (
-    <div
-      className={`cube ${justCompleted ? 'is-complete' : ''}`}
-      data-active-face={activeFace}
-      data-cycle-index={cycleIndex}
-      style={{
-        transform: `rotateX(${orientation.rotateX + viewTiltX}deg) rotateY(${orientation.rotateY + viewTiltY}deg)`,
-      }}
-    >
-      {justCompleted ? <span className="sr-only">Period complete</span> : null}
-      {FACE_ORDER.map((face) => (
-        <CubeFace
-          key={face}
-          face={face}
-          isActive={face === activeFace}
-          remainingMs={remainingMs}
-          config={config}
-        />
-      ))}
+    <div style={{transform:
+      `rotateX(${viewTiltX}deg) rotateY(${viewTiltY}deg) rotateZ(${viewTiltZ}deg)`
+    , transformStyle: 'preserve-3d'}}>
+      <div
+        className={`cube ${justCompleted ? 'is-complete' : ''}`}
+        data-active-face={activeFace}
+        data-cycle-index={cycleIndex}
+        style={{
+          transform:
+            `rotateX(${orientation.rotateX}deg) rotateY(${orientation.rotateY}deg)`,
+        }}
+      >
+        {justCompleted ? <span className="sr-only">Period complete</span> : null}
+        {FACE_ORDER.map((face) => (
+          <CubeFace
+            key={face}
+            face={face}
+            isActive={face === activeFace}
+            remainingMs={remainingMs}
+            config={config}
+          />
+        ))}
+      </div>
     </div>
+
   )
 }

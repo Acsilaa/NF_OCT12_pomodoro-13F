@@ -1,5 +1,5 @@
 .cube-scene {
-  --cube-size: clamp(13.5rem, 54vmin, 19.5rem);
+  --cube-size: clamp(10.5rem, 50vmin, 16rem);
   width: var(--cube-size);
   height: var(--cube-size);
   perspective: 920px;
@@ -64,7 +64,7 @@
 }
 
 .cube-face-top {
-  transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+  transform: rotateX(90deg) rotateZ(180deg) translateZ(calc(var(--cube-size) / 2)) ;
 }
 
 .cube-face-bottom {
